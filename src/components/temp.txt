@@ -1,0 +1,16 @@
+    try {
+      const response = await axios.get('http://localhost:5000/api/students');
+      if (Array.isArray(response.data)) {
+        setStudents(response.data);
+      } else if (typeof response.data === 'object') {
+        setStudents([response.data]);
+      } else {
+        setStudents([]);
+      }
+    } catch (error) {
+      console.error('Erreur de récupération des étudiants:', error);
+      setStudents([]);
+    } finally {
+      setLoading(false);
+    }
+  };
